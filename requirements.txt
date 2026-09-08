@@ -1,0 +1,19 @@
+# --- Speech ---
+speechrecognition==3.10.4
+pyttsx3==2.90
+pyaudio==0.2.14
+
+# --- System control (installed later, listed now for reference) ---
+pycaw==20240210
+comtypes==1.4.5
+screen-brightness-control==0.24.0
+psutil==5.9.8
+pyautogui==0.9.54
+pywin32==306
+
+# --- UI (installed later) ---
+customtkinter==5.2.2
+pillow==10.4.0
+
+# --- Utilities ---
+python-dotenv==1.0.1

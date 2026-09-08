@@ -32,7 +32,6 @@ A futuristic **Jarvis-style Windows voice assistant** built in Python, designed 
 
 <div align="center">
 
-<img src="Screenshots/Marcus%20Info%20Readme.file.png" alt="Marcus Introduction" width="92%">
 
 </div>
 

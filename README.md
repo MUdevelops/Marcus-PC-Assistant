@@ -22,7 +22,6 @@ A futuristic **Jarvis-style Windows voice assistant** built in Python, designed 
   <a href="#-architecture">Architecture</a>
 </p>
 
-<img src="Screenshots/marcus-readme-animated.gif" alt="Marcus animated interface" width="100%">
 
 </div>
 
@@ -42,6 +41,11 @@ A futuristic **Jarvis-style Windows voice assistant** built in Python, designed 
 Marcus listens for voice commands, interprets them with a keyword/regex intent parser, executes the requested Windows action, and responds through offline text-to-speech.
 
 The project combines a **futuristic blue/black visual identity** with practical PC automation — from opening applications and controlling volume to taking screenshots, searching the web, managing timers, and performing protected system actions.
+
+
+
+<img src="Screenshots/marcus-readme-animated.gif" alt="Marcus animated interface" width="100%">
+
 
 ### ✨ Design Language
 

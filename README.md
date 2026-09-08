@@ -1,159 +1,560 @@
-# Marcus — PC Assistant
+<div align="center">
 
-A Jarvis-style Windows voice assistant. Wake word: **"Hey Marcus"**.
-Speech recognition: Google Web Speech API (free, needs internet).
-Text-to-speech: pyttsx3 (offline, uses Windows SAPI5 voices).
+# ⚡ MARCUS — PC ASSISTANT
 
-## Project layout
+### **Think • Assist • Execute**
 
+A futuristic **Jarvis-style Windows voice assistant** built in Python, designed to control your PC through natural voice commands while providing a polished neon-blue desktop interface.
+
+<p>
+  <img src="https://img.shields.io/badge/Python-3.11.9-00A8FF?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11.9">
+  <img src="https://img.shields.io/badge/Platform-Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
+  <img src="https://img.shields.io/badge/UI-CustomTkinter-00C8FF?style=for-the-badge" alt="CustomTkinter">
+  <img src="https://img.shields.io/badge/License-MIT-00A8FF?style=for-the-badge" alt="MIT License">
+</p>
+
+<p>
+  <a href="#-introduction">Introduction</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-screenshots">Screenshots</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-commands">Commands</a> •
+  <a href="#-architecture">Architecture</a>
+</p>
+
+<img src="Screenshots/marcus-readme-animated.gif" alt="Marcus animated interface" width="100%">
+
+</div>
+
+---
+
+## 🤖 Introduction
+
+<div align="center">
+
+<img src="Screenshots/Marcus%20Info%20Readme.file.png" alt="Marcus Introduction" width="92%">
+
+</div>
+
+> **Marcus** is a Windows desktop voice assistant built around a simple idea:
+> **your computer should understand what you say and help you get things done.**
+
+Marcus listens for voice commands, interprets them with a keyword/regex intent parser, executes the requested Windows action, and responds through offline text-to-speech.
+
+The project combines a **futuristic blue/black visual identity** with practical PC automation — from opening applications and controlling volume to taking screenshots, searching the web, managing timers, and performing protected system actions.
+
+### ✨ Design Language
+
+| Element | Marcus Style |
+|---|---|
+| 🎨 Visual theme | Deep black / navy + electric cyan-blue |
+| 🧠 Personality | Futuristic, direct, helpful |
+| ⚡ Interaction | Voice-first with optional manual UI interaction |
+| 🖥️ Interface | CustomTkinter desktop UI |
+| 🔊 Voice input | Google Web Speech API |
+| 🗣️ Voice output | `pyttsx3` + Windows SAPI5 |
+| 🛡️ Safety | Confirmation before destructive actions |
+| 📝 Diagnostics | Rotating command/outcome logs |
+
+---
+
+## 🚀 Features
+
+### 🎙️ Voice Control
+- Wake word support: **“Hey Marcus”**
+- Speech-to-text through Google Web Speech API
+- Offline text-to-speech through `pyttsx3`
+- Direct command recognition without requiring the wake word when configured
+
+### 🖥️ Windows Control
+- Open applications, files and folders
+- Close, minimize, maximize and restore windows
+- Switch between applications
+- Control system volume
+- Mute / unmute
+- Adjust display brightness
+- Take screenshots
+- Open / close webcam
+- Lock the screen
+- Sleep, restart and shutdown with confirmation
+- Check battery, Wi-Fi and disk space
+
+### 🌐 Web & Media
+- Open websites
+- Google searches
+- YouTube searches
+
+### ⏱️ Productivity
+- Current date/time
+- Timers
+- Named timers
+- Cancel timers
+- List active timers
+
+### 🎨 Futuristic UI
+- Responsive splash screen
+- Neon-blue visual system
+- Main menu artwork
+- Sidebar navigation
+- Animated microphone/listening indicator
+- Chat/transcript component
+- Home / Apps / Tools / Settings navigation structure
+
+### 🛡️ Safety First
+Marcus does not blindly execute destructive operations. Actions such as **close, sleep, restart and shutdown** use confirmation handling before execution.
+
+---
+
+## 🧩 How Marcus Works
+
+```text
+┌──────────────────┐
+│   🎙️ Microphone  │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│ Speech Recognition│
+│  Google Web API   │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  Intent Parser    │
+│ Keyword / Regex   │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│ Command Handler   │
+│ Files / System /  │
+│ Web / Productivity│
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│ Windows / Web     │
+│ Action Executed   │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│   🔊 Marcus TTS   │
+│    Response       │
+└──────────────────┘
 ```
-marcus/
-├── main.py                # main listen → parse → execute → respond loop
-├── config.py               # paths, wake word, thresholds, feature flags
-├── listener.py              # mic input + speech-to-text
-├── speaker.py                # pyttsx3 TTS wrapper
-├── intent_parser.py        # keyword/regex → command function mapping
-├── logger_setup.py           # rotating file logger for commands/outcomes
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Language | **Python 3.11.9** |
+| Speech Recognition | `SpeechRecognition` |
+| Microphone | `PyAudio` |
+| Text-to-Speech | `pyttsx3` |
+| Desktop UI | `CustomTkinter` |
+| Image Processing | `Pillow` |
+| Windows Audio | `pycaw` / `comtypes` |
+| Brightness | `screen-brightness-control` |
+| System Information | `psutil` |
+| Automation | `pyautogui` |
+| Windows Integration | `pywin32` |
+| Configuration | `python-dotenv` |
+
+The repository pins these dependencies in `requirements.txt`.
+
+---
+
+## 📸 Screenshots
+
+### 🌌 Main Interface
+
+<div align="center">
+<img src="Screenshots/Main%20Interface.png" alt="Marcus Main Interface" width="96%">
+</div>
+
+Marcus's primary desktop interface — the central command environment.
+
+---
+
+### 🗣️ Manual Command
+
+<div align="center">
+<img src="Screenshots/Manual%20Command.png" alt="Marcus Manual Command" width="86%">
+</div>
+
+Use the interface for manual command input when voice interaction isn't convenient.
+
+---
+
+### 🎙️ Ready to Assist
+
+<div align="center">
+<img src="Screenshots/Ready%20to%20Assist.png" alt="Marcus Ready to Assist" width="86%">
+</div>
+
+A visual state showing that Marcus is ready to receive your next command.
+
+---
+
+### ⚙️ Settings
+
+<div align="center">
+<img src="Screenshots/Setting.png" alt="Marcus Settings" width="86%">
+</div>
+
+Configure Marcus from the dedicated settings interface.
+
+---
+
+### 🧰 Tools
+
+<div align="center">
+<img src="Screenshots/Tools.png" alt="Marcus Tools" width="86%">
+</div>
+
+Tools and utility controls available from the Marcus interface.
+
+---
+
+### 🚀 Splash Screen
+
+<div align="center">
+<img src="Screenshots/Splash%20Screen.png" alt="Marcus Splash Screen" width="86%">
+</div>
+
+The application launches with a responsive futuristic splash experience.
+
+---
+
+### 🧠 Marcus Info
+
+<div align="center">
+<img src="Screenshots/Marcus%20Info%20Readme.file.png" alt="Marcus Info / Introduction" width="92%">
+</div>
+
+The Marcus visual identity and introduction artwork that inspired this README's presentation.
+
+---
+
+## 💬 Commands
+
+### 📁 Files & Applications
+
+```text
+Hey Marcus, open chrome
+open notepad
+open downloads
+close notepad
+close the active window
+minimize
+maximize
+restore the window
+switch to chrome
+```
+
+### 🖥️ System
+
+```text
+brightness up
+brightness down
+set brightness to 70
+
+volume up
+volume down
+mute
+unmute
+set volume to 40
+
+take a screenshot
+open the camera
+close the camera
+lock the screen
+
+go to sleep
+shut down
+restart
+
+what's my battery
+check wifi
+disk space
+```
+
+### 🌐 Web
+
+```text
+go to github.com
+open the website reddit
+search google for python tutorials
+search youtube for lofi beats
+```
+
+### ⏱️ Productivity
+
+```text
+what time is it
+
+set a timer for 10 minutes
+set a timer for 5 minutes for pasta
+
+cancel the pasta timer
+list timers
+```
+
+---
+
+## 📦 Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/MUdevelops/Marcus-PC-Assistant.git
+cd Marcus-PC-Assistant
+```
+
+### 2. Create a virtual environment
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### 3. Install PyAudio
+
+On Windows, PyAudio may fail to build from source. The repository recommends installing it through `pipwin` first:
+
+```bash
+pip install pipwin
+pipwin install pyaudio
+```
+
+### 4. Install the remaining dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Launch Marcus
+
+```bash
+python main.py
+```
+
+### Optional modes
+
+```bash
+python main.py --ui
+python main.py --console
+```
+
+---
+
+## ⚙️ Configuration
+
+Wake-word-only operation can be enabled in:
+
+```text
+config.py
+```
+
+Set:
+
+```python
+REQUIRE_WAKE_WORD = True
+```
+
+When enabled, Marcus requires **“Hey Marcus”** before processing a command.
+
+---
+
+## 🧱 Project Architecture
+
+```text
+Marcus-PC-Assistant/
 │
 ├── commands/
-│   ├── files_apps.py         # open file/folder, launch app, close/min/max/switch window
-│   ├── system.py            # brightness, volume, screenshot, webcam, lock/sleep/shutdown/restart, battery/wifi/disk
-│   ├── media_web.py           # browser open, Google/YouTube search
-│   └── productivity.py      # date/time, reminders/timers
+│   ├── files_apps.py
+│   ├── system.py
+│   ├── media_web.py
+│   └── productivity.py
 │
 ├── ui/
-│   ├── app.py                # main UI window (CustomTkinter)
-│   ├── theme.py               # colors, fonts, glow styling from the splash art
-│   ├── assets/                # logo, mascot, icons
+│   ├── app.py
+│   ├── theme.py
+│   ├── assets/
 │   └── components/
-│       ├── sidebar.py         # Home / Apps / Tools / Settings nav
-│       ├── chat_bubble.py      # transcript panel
-│       └── mic_button.py      # animated listening indicator
+│       ├── sidebar.py
+│       ├── chat_bubble.py
+│       └── mic_button.py
 │
 ├── utils/
-│   ├── confirmation.py       # spoken/typed confirm-before-destructive-action helper
-│   └── window_utils.py       # pywin32 helpers for active window/title lookup
+│   ├── confirmation.py
+│   └── window_utils.py
 │
 ├── logs/
 │   └── marcus.log
+│
+├── main.py
+├── config.py
+├── listener.py
+├── speaker.py
+├── intent_parser.py
+├── logger_setup.py
 ├── requirements.txt
 └── README.md
 ```
 
-## Setup (Windows, Python 3.11.9)
+---
 
-```powershell
-cd marcus
-python -m venv venv
-venv\Scripts\activate
+## 🔧 Extending Marcus
 
-# pyaudio often fails to build from source on Windows — install via pipwin first:
-pip install pipwin
-pipwin install pyaudio
+### Add a known application
 
-# then everything else:
-pip install -r requirements.txt
+Update:
+
+```text
+commands/files_apps.py
 ```
 
-If `pipwin install pyaudio` fails, download the matching `.whl` from
-https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio (match your Python
-version, 64-bit) and `pip install path\to\that.whl`.
+and add the application to:
 
-## Running it
+```python
+KNOWN_APPS
+```
 
-```powershell
-# Voice + visual UI with responsive splash and Main Menu artwork:
+### Add a file/folder shortcut
+
+Add the path to:
+
+```python
+KNOWN_PATHS
+```
+
+### Add a new voice phrase
+
+Extend:
+
+```text
+intent_parser.py
+```
+
+by adding a new regex pattern and handler.
+
+> Patterns are checked **top-to-bottom** and the first matching pattern wins, so more specific patterns should come before general patterns.
+
+### Add new UI sections
+
+The main navigation hook is located in:
+
+```text
+ui/app.py
+```
+
+The `_on_nav_select()` method is the primary place to connect new **Apps / Tools / Settings** views.
+
+---
+
+## 🧪 Testing Individual Components
+
+```bash
+python speaker.py
+python listener.py
+python ui/app.py
 python main.py
-
-# The --ui form remains supported as an explicit alias:
-python main.py --ui
-
-# Voice-only console mode:
-python main.py --console
 ```
 
-Say a supported command directly, such as **"volume up"**, or say
-**"Hey Marcus"** followed by a command. See the command list below for
-what's supported out of the box. Set `REQUIRE_WAKE_WORD = True` in
-`config.py` if you want wake-word-only operation.
+These provide focused ways to test the TTS engine, listener, UI and complete application.
 
-## Windows-specific notes (read this before running)
+---
 
-- **No admin rights needed** for: opening apps/files, volume, brightness,
-  screenshots, webcam, lock screen, shutdown/restart/sleep (these use
-  the standard `shutdown.exe`, which works for the current user), web
-  search, timers.
-- **Admin rights may be needed** only if you're trying to switch to /
-  close a window belonging to an app that is *itself* running elevated
-  (e.g. an admin Command Prompt). If "switch to X" silently fails only
-  for one app, that's almost always why.
-- **Brightness control** only works on displays that expose brightness
-  via WMI or DDC/CI. Most laptop screens work; some external monitors
-  don't respond — you'll get a spoken error rather than a crash.
-- **Volume control (pycaw)** uses Windows' COM-based Core Audio API.
-  COM needs per-thread init; the shipped code only calls volume
-  functions from threads that already have COM available by default,
-  so you shouldn't hit this — but if you extend it into a new
-  background thread later and get a COM error, add
-  `comtypes.CoInitialize()` at the top of that thread's function.
-- **Closing windows is "polite"**: Marcus sends the same WM_CLOSE
-  signal as clicking the X button, so apps with unsaved work will show
-  their own "Save changes?" dialog — Marcus does not auto-dismiss it.
-  Combined with the required confirmation step, this means you get two
-  layers of protection against losing work.
+## 📝 Logging & Troubleshooting
 
-## Command reference (what you can say)
+Marcus records recognized commands and their outcomes in:
 
-**Files & apps**
-- "Hey Marcus, open chrome" / "open notepad" / "open downloads"
-- "close notepad" / "close the active window" *(asks to confirm)*
-- "minimize" / "maximize" / "restore the window"
-- "switch to chrome"
-
-**System**
-- "brightness up" / "brightness down" / "set brightness to 70"
-- "volume up" / "volume down" / "mute" / "unmute" / "set volume to 40"
-- "take a screenshot"
-- "open the camera" / "close the camera"
-- "lock the screen"
-- "go to sleep" / "shut down" / "restart" *(all ask to confirm)*
-- "what's my battery" / "check wifi" / "disk space"
-
-**Web**
-- "go to github.com" / "open the website reddit"
-- "search google for python tutorials"
-- "search youtube for lofi beats"
-
-**Productivity**
-- "what time is it"
-- "set a timer for 10 minutes" / "set a timer for 5 minutes for pasta"
-- "cancel the pasta timer" / "list timers"
-
-## Extending it
-
-- New app names: add to `KNOWN_APPS` in `commands/files_apps.py`.
-- New file/folder shortcuts: add to `KNOWN_PATHS` in the same file.
-- New voice phrasing: add a regex + handler to `_PATTERNS` in
-  `intent_parser.py` — patterns are checked top-to-bottom, first match
-  wins, so keep specific patterns above general ones.
-- New UI sections (Apps/Tools/Settings panels): `ui/app.py`'s
-  `_on_nav_select()` is the hook point — currently all sidebar items
-  show the same Home view.
-
-## Testing individual pieces
-
-```powershell
-python speaker.py      # lists system TTS voices, speaks a test line
-python listener.py     # tests wake word + one command capture
-python ui/app.py        # UI-only preview with no mic needed
-python main.py          # full thing: voice engine + UI together
+```text
+logs/marcus.log
 ```
 
-The UI loads `Main Menu.jpg` as its responsive background, with PNG/JPEG
-fallback support. Startup uses
-`Splash.png` when present and falls back to the included `Splash Screen.png`.
-Both images are contained proportionally so they are never stretched or
-distorted when the window is resized.
+If a command does not behave as expected, check the log first.
 
-Every recognized command and its outcome is logged to `logs/marcus.log`
-— check there first if something doesn't behave as expected.
+### Windows notes
+
+- Most standard actions do not require administrator rights.
+- Some interactions with elevated applications may require elevated privileges.
+- Brightness support depends on the display exposing WMI or DDC/CI controls.
+- External monitors may not support brightness adjustment.
+- Windows Core Audio functions use COM through `pycaw`.
+
+---
+
+## 🛡️ Responsible Automation
+
+Marcus is designed to make everyday PC interaction faster without removing user control.
+
+Destructive operations use confirmation handling, and closing an application sends a normal Windows close request rather than forcibly killing the process. Applications can therefore still display their own **“Save changes?”** dialogs.
+
+---
+
+## 🗺️ Roadmap
+
+Potential future improvements:
+
+- [ ] More natural-language intent understanding
+- [ ] More customizable commands
+- [ ] Expanded Apps / Tools / Settings panels
+- [ ] More visual assistant states
+- [ ] Custom wake-word engine
+- [ ] Offline speech recognition option
+- [ ] Plugin-style command modules
+- [ ] User-configurable themes
+- [ ] More productivity integrations
+
+---
+
+## 🌐 Repository
+
+<div align="center">
+
+**Explore Marcus on GitHub**
+
+<a href="https://github.com/MUdevelops/Marcus-PC-Assistant">
+  <img src="https://img.shields.io/badge/GitHub-Marcus--PC--Assistant-00A8FF?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repository">
+</a>
+
+<br><br>
+
+**Your digital partner. Always on your side.**
+
+### ⚡ Think → Assist → Execute
+
+</div>
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+See [`LICENSE`](LICENSE) for details.
+
+---
+
+<div align="center">
+
+### 🤖 MARCUS
+
+**PC ASSISTANT**
+
+*Built for Windows • Powered by Python • Designed for the future*
+
+<br>
+
+<img src="Screenshots/Marcus%20Info%20Readme.file.png" alt="Marcus" width="520">
+
+<br><br>
+
+**If Marcus helps you, consider giving the repository a ⭐**
+
+</div>
